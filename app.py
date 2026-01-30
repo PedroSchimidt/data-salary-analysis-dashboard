@@ -19,3 +19,23 @@ def load_data():
     )
 
 df = load_data()
+
+st.sidebar.title("⚙️ Configurações da Análise")
+
+anos = sorted(df["ano"].unique())
+senioridades = sorted(df["senioridade"].unique())
+
+anos_sel = st.sidebar.multiselect("Ano", anos, default=anos)
+senior_sel = st.sidebar.multiselect(
+    "Senioridade", senioridades, default=senioridades
+)
+
+st.sidebar.title("⚙️ Configurações da Análise")
+
+anos = sorted(df["ano"].unique())
+senioridades = sorted(df["senioridade"].unique())
+
+anos_sel = st.sidebar.multiselect("Ano", anos, default=anos)
+senior_sel = st.sidebar.multiselect(
+    "Senioridade", senioridades, default=senioridades
+)
