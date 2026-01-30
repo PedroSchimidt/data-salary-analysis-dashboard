@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 
-# CARREGAMENTO DE DADOS (CACHE)
+# CARREGAMENTO DE DADOS 
 
 @st.cache_data(show_spinner=True)
 def load_data():
@@ -24,6 +24,20 @@ def load_data():
 df = load_data()
 
 
+#FILTRO
+
+TOP_N_CARGOS = 12  # ajuste se quiser
+
+cargos_relevantes = (
+    df["cargo"]
+    .value_counts()
+    .head(TOP_N_CARGOS)
+    .index
+    .sort_values()
+    .tolist()
+)
+
+
 # SIDEBAR - FILTROS
 
 st.sidebar.title("⚙️ Configurações da Análise")
@@ -33,7 +47,9 @@ anos = sorted(df["ano"].unique())
 senioridades = sorted(df["senioridade"].unique())
 contratos = sorted(df["contrato"].unique())
 tamanhos = sorted(df["tamanho_empresa"].unique())
-cargos = sorted(df["cargo"].unique())
+
+
+cargos = cargos_relevantes
 
 anos_sel = st.sidebar.multiselect("Ano", anos, default=anos)
 senior_sel = st.sidebar.multiselect("Senioridade", senioridades, default=senioridades)
@@ -86,6 +102,7 @@ col1.metric(
 col2.metric("Salário médio global", f"${media_global:,.0f}")
 col3.metric("Total de registros", f"{registros:,}")
 col4.metric("Cargo mais analisado", cargo_destaque)
+
 
 # ABAS
 
