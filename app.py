@@ -39,3 +39,7 @@ anos_sel = st.sidebar.multiselect("Ano", anos, default=anos)
 senior_sel = st.sidebar.multiselect(
     "Senioridade", senioridades, default=senioridades
 )
+
+df_filtrado = df.query(
+    "ano in @anos_sel and senioridade in @senior_sel"
+)
