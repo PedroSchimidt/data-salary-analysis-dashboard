@@ -162,3 +162,10 @@ with tab2:
                 labels={"usd": "USD"}
             )
             st.plotly_chart(fig_map, use_container_width=True)
+
+# - TAB 3
+with tab3:
+    st.dataframe(
+        df_filtrado.sort_values("usd", ascending=False),
+        use_container_width=True
+    )
