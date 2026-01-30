@@ -87,3 +87,30 @@ col2.metric("Salário médio global", f"${media_global:,.0f}")
 col3.metric("Total de registros", f"{registros:,}")
 col4.metric("Cargo mais analisado", cargo_destaque)
 
+# ABAS
+
+tab1, tab2, tab3 = st.tabs(
+    ["📈 Análises Salariais", "🌍 Distribuição Geográfica", "📄 Base de Dados"]
+)
+
+# - TAB 1
+with tab1:
+    col_a, col_b = st.columns(2)
+
+    if not df_filtrado.empty:
+        top_cargos = (
+            df_filtrado.groupby("cargo")["usd"]
+            .mean()
+            .sort_values(ascending=False)
+            .head(10)
+            .reset_index()
+        )
+
+        fig_bar = px.bar(
+            top_cargos,
+            x="usd",
+            y="cargo",
+            orientation="h",
+            title="Top 10 cargos por salário médio",
+            labels={"usd": "Salário médio anual (USD)", "cargo": ""}
+        )
