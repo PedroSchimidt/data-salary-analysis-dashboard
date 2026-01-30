@@ -114,3 +114,51 @@ with tab1:
             title="Top 10 cargos por salário médio",
             labels={"usd": "Salário médio anual (USD)", "cargo": ""}
         )
+        fig_bar.update_layout(yaxis=dict(autorange="reversed"))
+        col_a.plotly_chart(fig_bar, use_container_width=True)
+
+        fig_hist = px.histogram(
+            df_filtrado,
+            x="usd",
+            nbins=35,
+            title="Distribuição salarial",
+            labels={"usd": "Salário anual (USD)"}
+        )
+        col_b.plotly_chart(fig_hist, use_container_width=True)
+
+    else:
+        st.info("Nenhum dado disponível para os filtros selecionados.")
+
+# - TAB 2
+with tab2:
+    if not df_filtrado.empty:
+        remoto = df_filtrado["remoto"].value_counts().reset_index()
+        remoto.columns = ["Modelo", "Quantidade"]
+
+        fig_pie = px.pie(
+            remoto,
+            names="Modelo",
+            values="Quantidade",
+            hole=0.45,
+            title="Modelo de trabalho"
+        )
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+        df_ds = df_filtrado[df_filtrado["cargo"] == "Data Scientist"]
+        if not df_ds.empty:
+
+            st.info(
+                "ℹ️ Países exibidos em branco no mapa indicam ausência de dados "
+                "para o perfil selecionado."
+            )
+
+            mapa = df_ds.groupby("residencia_iso3")["usd"].mean().reset_index()
+
+            fig_map = px.choropleth(
+                mapa,
+                locations="residencia_iso3",
+                color="usd",
+                title="Salário médio de Data Scientists por país",
+                labels={"usd": "USD"}
+            )
+            st.plotly_chart(fig_map, use_container_width=True)
