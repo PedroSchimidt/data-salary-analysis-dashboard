@@ -103,7 +103,6 @@ col2.metric("Salário médio global", f"${media_global:,.0f}")
 col3.metric("Total de registros", f"{registros:,}")
 col4.metric("Cargo mais analisado", cargo_destaque)
 
-
 # ABAS
 
 tab1, tab2, tab3 = st.tabs(
