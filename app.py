@@ -43,3 +43,12 @@ senior_sel = st.sidebar.multiselect(
 df_filtrado = df.query(
     "ano in @anos_sel and senioridade in @senior_sel"
 )
+
+media_filtro = df_filtrado["usd"].mean()
+media_global = df["usd"].mean()
+diferenca = media_filtro - media_global
+
+col1, col2 = st.columns(2)
+
+col1.metric("Salário médio (USD)", f"${media_filtro:,.0f}")
+col2.metric("Média global (USD)", f"${media_global:,.0f}")
