@@ -96,3 +96,14 @@ if not df_filtrado.empty:
             f"com diferença média de ${diferenca:,.0f}."
         )
 
+    elif diferenca < 0:
+        st.warning(
+            f"💡 Insight: Os filtros selecionados apresentam salários **abaixo da média global**, "
+            f"com diferença média de ${abs(diferenca):,.0f}."
+        )
+
+    else:
+        st.info(
+            "💡 Insight: Os filtros selecionados apresentam salários "
+            "**alinhados à média global**, sem variação significativa."
+        )
