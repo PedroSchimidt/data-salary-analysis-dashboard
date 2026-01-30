@@ -86,3 +86,13 @@ col1.metric(
 col2.metric("Salário médio global", f"${media_global:,.0f}")
 col3.metric("Total de registros", f"{registros:,}")
 col4.metric("Cargo mais analisado", cargo_destaque)
+
+# INSIGHT AUTOMÁTICO
+
+if not df_filtrado.empty:
+    if diferenca > 0:
+        st.success(
+            f"💡 Insight: Os filtros selecionados apresentam salários **acima da média global**, "
+            f"com diferença média de ${diferenca:,.0f}."
+        )
+
