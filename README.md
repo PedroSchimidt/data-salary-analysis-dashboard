@@ -6,11 +6,11 @@ O projeto permite explorar diferentes cenários salariais a partir de filtros co
 
 ## 🔧 Tecnologias e bibliotecas utilizadas
 
-- **Python**
-- **Streamlit** — construção do dashboard interativo
-- **Pandas** — manipulação e análise dos dados
-- **Plotly Express** — visualizações interativas
-- **Git / GitHub** — versionamento do projeto
+- Python
+- Streamlit — construção do dashboard interativo
+- Pandas — manipulação e análise dos dados
+- Plotly Express — visualizações interativas
+- Git / GitHub — versionamento do projeto
 
 ## 📊 Funcionalidades
 
